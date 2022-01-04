@@ -1,5 +1,7 @@
 import React,{ useState } from 'react';
 
+// import { Link } from "react-router-dom";
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -43,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
+    border: '4px'
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -56,7 +59,7 @@ export default function SignUp() {
   function handleSubmit(e){
       e.preventDefault()
      if (formData.password === formData.password_confirmation){
-         console.log(formData)
+         fetch(" ")
      } else{
       alert("Password has to be the same")
      }
@@ -151,7 +154,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link variant="body2" to="/signin">
                 Already have an account? Sign in
               </Link>
             </Grid>
