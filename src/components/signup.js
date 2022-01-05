@@ -58,13 +58,28 @@ export default function SignUp() {
 
   function handleSubmit(e){
       e.preventDefault()
+      console.log(formData)
      if (formData.password === formData.password_confirmation){
-         fetch(" ")
+      fetch('http://127.0.0.1:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+        .then(res => res.json())
+        .then(formData => {
+          console.log(formData)
+          // something to append to the UI the obj created
+        });
      } else{
       alert("Password has to be the same")
      }
      setFormData({username:"", email:"", password:"",password_confirmation:""})
   }
+
+
+  
 
   return (
     <Container component="main" maxWidth="xs">

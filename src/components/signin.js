@@ -12,8 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
 function Copyright(props) {
+  
+
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -29,15 +32,27 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (e) => {
+
+
+  const [session, setSession] = useState({username:"", password:""});
+
+  const handleSignIn = (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    console.log(session)
+    fetch('http://127.0.0.1:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(session)
+      })
+        .then(res => res.json())
+        .then(x => {
+          
+          console.log(x))
+        }
+
+        }
 
   return (
     <ThemeProvider theme={theme}>
@@ -57,15 +72,17 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSignIn} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="username"
+              name="username"
+              autoComplete="username"
+              value={session.username}
+              onChange={(e) => setSession({...session, username: e.target.value})}
               autoFocus
             />
             <TextField
@@ -76,6 +93,8 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
+              value={session.password}
+              onChange={(e) => setSession({...session, password: e.target.value})}
               autoComplete="current-password"
             />
             <FormControlLabel
