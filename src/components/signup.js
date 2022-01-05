@@ -1,7 +1,5 @@
 import React,{ useState } from 'react';
 
-// import { Link } from "react-router-dom";
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -54,7 +52,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-  const [formData, setFormData] = useState({username:"", email:"", password:"",password_confirmation:""})
+  const [formData, setFormData] = useState({
+    username:"", 
+    email:"", 
+    password:"",
+    password_confirmation:""
+  })
 
   function handleSubmit(e){
       e.preventDefault()
@@ -77,9 +80,6 @@ export default function SignUp() {
      }
      setFormData({username:"", email:"", password:"",password_confirmation:""})
   }
-
-
-  
 
   return (
     <Container component="main" maxWidth="xs">
