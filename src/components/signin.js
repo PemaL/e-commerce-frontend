@@ -31,7 +31,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({setCurrentUser}) {
 
 
   const [session, setSession] = useState({username:"", password:""});
@@ -47,11 +47,7 @@ export default function SignIn() {
         body: JSON.stringify(session)
       })
         .then(res => res.json())
-        .then(x => {
-          
-          console.log(x))
-        }
-
+        .then(x => setCurrentUser(x))
         }
 
   return (
@@ -83,6 +79,7 @@ export default function SignIn() {
               autoComplete="username"
               value={session.username}
               onChange={(e) => setSession({...session, username: e.target.value})}
+
               autoFocus
             />
             <TextField
