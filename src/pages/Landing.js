@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home() {
+function Landing() {
   const classes = useStyles();
 
   return (
@@ -48,10 +48,9 @@ function Home() {
             <Link to="/SignIn" className={classes.link}>
               Sign In
             </Link>
-        
           </div>
       </Toolbar>
     </AppBar>
   );
 }
-export default Home;
+export default Landing;

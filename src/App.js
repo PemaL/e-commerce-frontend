@@ -1,5 +1,5 @@
 import './App.css'
-import Home from './pages/home'
+import Landing from './pages/Landing'
 import { Routes, Route, Navigate } from "react-router-dom";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
@@ -23,7 +23,7 @@ function App() {
   if (!currentUser) {
     return (
       <>
-        <Home />
+        <Landing />
         <Routes>
           <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignIn setCurrentUser={setCurrentUser} />} />
@@ -33,7 +33,7 @@ function App() {
   } else {
     return (
       <>
-        <Home />
+        <Landing />
         <Routes>
           <Route path="/mainpage" element={<MainPage currentUser={currentUser} />} />
         </Routes>
