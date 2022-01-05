@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function Copyright(props) {
   
@@ -33,7 +34,7 @@ const theme = createTheme();
 
 export default function SignIn({setCurrentUser}) {
 
-
+  const navigate = useNavigate();
   const [session, setSession] = useState({username:"", password:""});
 
   const handleSignIn = (e) => {
@@ -47,7 +48,10 @@ export default function SignIn({setCurrentUser}) {
         body: JSON.stringify(session)
       })
         .then(res => res.json())
-        .then(x => setCurrentUser(x))
+        .then(x => {
+          setCurrentUser(x)
+          navigate('/mainpage')
+        })
         }
 
   return (
