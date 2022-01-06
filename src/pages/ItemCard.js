@@ -12,9 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 // function ItemCard({item}) {
@@ -56,16 +56,12 @@ const useStyles = makeStyles((theme) => ({
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
-
-    // const user = users.map((user)=> user.username)
-    console.log(name)
     
     return (
       <Card className={classes.root}>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
-              R
             </Avatar>
           }
           action={
@@ -92,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="share">
-            <ShareIcon />
+         < AddCircleIcon/>
           </IconButton>
           <IconButton
             className={clsx(classes.expand, {

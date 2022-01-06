@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
+
 function Copyright(props) {
   
 
@@ -32,14 +33,13 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn({setCurrentUser}) {
+export default function SignIn({currentUser, setCurrentUser}) {
 
   const navigate = useNavigate();
   const [session, setSession] = useState({username:"", password:""});
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log(session)
     fetch('http://127.0.0.1:3000/login', {
         method: 'POST',
         headers: {
@@ -50,10 +50,9 @@ export default function SignIn({setCurrentUser}) {
         .then(res => res.json())
         .then(x => {
           setCurrentUser(x)
-          navigate('/mainpage')
+          navigate('/MainPage')
         })
         }
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

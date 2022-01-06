@@ -153,7 +153,7 @@ export default function SignUp() {
                 name="password"
                 label="Confirm Password"
                 type="password"
-                id="password"
+                id="confirm_password"
                 value={formData.password_confirmation}
                 onChange={(e) =>
                   setFormData({
