@@ -4,19 +4,19 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import {useNavigate} from 'react-router-dom';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function NavBar({setSearch,search,setCurrentUser}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -82,6 +82,17 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const navigate = useNavigate();
+
+ function handleLogout(){
+    fetch('http://127.0.0.1:3000/logout', { method: 'DELETE' })
+        .then(() => console.log('Delete successful'))
+        .then(x => {
+          setCurrentUser("")
+          navigate('/')
+        })
+ }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -102,6 +113,7 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My Sales</MenuItem>
       <MenuItem onClick={handleMenuClose}>My Purchases</MenuItem>
+     <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -123,21 +135,21 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 likes" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+          <FavoriteIcon/>
           </Badge>
         </IconButton>
-        <p>My likes</p>
+        <p>My Likes</p>
       </MenuItem>
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 17 cart items"
           color="inherit"
         >
           <Badge badgeContent={17} color="error">
-          <MailIcon />
+          <ShoppingCartIcon />
           </Badge>
         </IconButton>
         <p>My Cart</p>
@@ -156,6 +168,8 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -176,7 +190,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Flata Shop
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -185,22 +199,24 @@ export default function PrimarySearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <IconButton size="large" aria-label="show 4 likes" color="inherit">
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+              <FavoriteIcon/>
               </Badge>
             </IconButton>
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 17 cart items"
               color="inherit"
             >
               <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+              <ShoppingCartIcon />
               </Badge>
             </IconButton>
             <IconButton
