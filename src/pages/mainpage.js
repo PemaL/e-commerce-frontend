@@ -10,6 +10,14 @@ function MainPage({currentUser}){
 
     const navigate = useNavigate();
 
+    const [users, setUsers] = useState([])
+
+      useEffect(() => {
+    fetch('http://127.0.0.1:3000/users')
+    .then(res => res.json())
+    .then(x => setUsers(x))
+    },[]) 
+
     useEffect(() => {
     fetch('http://127.0.0.1:3000/items')
     .then(res => res.json())
@@ -24,7 +32,7 @@ function MainPage({currentUser}){
         <div>           
             <h1>Hello{currentUser.username}</h1>
             <button onClick={handleClick}> Sell an item </button>
-             <ItemPage items={items}/> 
+             <ItemPage users={users} items={items}/> 
         </div>
     )
 }

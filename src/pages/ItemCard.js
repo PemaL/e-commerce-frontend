@@ -49,14 +49,17 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-  export default function ItemCard({item}) {
+  export default function ItemCard({item, name}) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
   
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
-  
+
+    // const user = users.map((user)=> user.username)
+    console.log(name)
+    
     return (
       <Card className={classes.root}>
         <CardHeader
@@ -70,8 +73,9 @@ const useStyles = makeStyles((theme) => ({
               <MoreVertIcon />
             </IconButton>
           }
+          
           title={item.name}
-          subheader="September 14, 2016"
+          subheader= {`seller: ${name}` }
         />
         <CardMedia
           className={classes.media}
