@@ -17,7 +17,10 @@ function App() {
 
   let searchedItems = items.filter((item) => (item.name.toLowerCase().includes(search.toLowerCase())))
 
+  console.log(currentUser)
+
   useEffect(() => {
+
     fetch('http://127.0.0.1:3000/items')
     .then(res => res.json())
     .then(data => setItems(data));
