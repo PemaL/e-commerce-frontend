@@ -1,30 +1,28 @@
-import React,{ useState } from 'react';
+import React, { useState } from "react";
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
 function Copyright() {
-
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -32,18 +30,18 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
-    border: '4px'
+    border: "4px",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -53,32 +51,37 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
   const [formData, setFormData] = useState({
-    username:"", 
-    email:"", 
-    password:"",
-    password_confirmation:""
-  })
+    username: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
 
-  function handleSubmit(e){
-      e.preventDefault()
-      console.log(formData)
-     if (formData.password === formData.password_confirmation){
-      fetch('http://127.0.0.1:3000/users', {
-        method: 'POST',
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formData);
+    if (formData.password === formData.password_confirmation) {
+      fetch("http://127.0.0.1:3000/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       })
-        .then(res => res.json())
-        .then(formData => {
-          console.log(formData)
+        .then((res) => res.json())
+        .then((formData) => {
+          console.log(formData);
           // something to append to the UI the obj created
         });
-     } else{
-      alert("Password has to be the same")
-     }
-     setFormData({username:"", email:"", password:"",password_confirmation:""})
+    } else {
+      alert("Password has to be the same");
+    }
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+    });
   }
 
   return (
@@ -103,10 +106,12 @@ export default function SignUp() {
                 id="userName"
                 label="Username"
                 value={formData.username}
-                onChange={(e) => setFormData({...formData, username: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
                 autoFocus
               />
-            </Grid> 
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 type="email"
@@ -118,7 +123,9 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 autoComplete="email"
               />
             </Grid>
@@ -132,11 +139,13 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 autoComplete="current-password"
               />
             </Grid>
-             <Grid item xs={12}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -146,7 +155,12 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 value={formData.password_confirmation}
-                onChange={(e) => setFormData({...formData, password_confirmation: e.target.value})}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    password_confirmation: e.target.value,
+                  })
+                }
                 autoComplete="current-password"
               />
             </Grid>
@@ -163,7 +177,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick= {handleSubmit}
+            onClick={handleSubmit}
           >
             Sign Up
           </Button>
@@ -180,5 +194,5 @@ export default function SignUp() {
         <Copyright />
       </Box>
     </Container>
-   );
+  );
 }

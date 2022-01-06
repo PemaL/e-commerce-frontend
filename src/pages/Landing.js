@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import {
   AppBar,
@@ -15,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(10),
     display: "flex",
   },
- logo: {
+  logo: {
     flexGrow: "1",
     cursor: "pointer",
   },
@@ -39,18 +37,22 @@ function Landing({currentUser}) {
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.logo}>
-        Dom's Shop
+          Dom's Shop
         </Typography>
-          <div className={classes.navlinks}>
-            <Link to="/SignUp" className={classes.link}>
-              Sign Up
-            </Link>
-            <Link to="/SignIn" className={classes.link}>
-              Sign In
-            </Link>
-          </div>
+        <div className={classes.navlinks}>
+          <Link to="/SignUp" className={classes.link}>
+            Sign Up
+          </Link>
+          <Link to="/SignIn" className={classes.link}>
+            Sign In
+          </Link>
+          <Link to="/Cart" className={classes.link}>
+            Cart
+          </Link>
+        </div>
       </Toolbar>
     </AppBar>
   );
 }
+
 export default Landing;
