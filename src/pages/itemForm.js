@@ -1,12 +1,8 @@
-
 import React,{ useState } from 'react';
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -33,16 +29,13 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    display: 'inline',
+    // flexDirection: 'row',
+    // alignItems: 'left',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '40%',
+    height: '40%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
     border: '4px'
   },
@@ -51,20 +44,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function ItemForm({currentUser}) {
   const classes = useStyles();
   const [formData, setFormData] = useState({
-    username:"", 
-    email:"", 
-    password:"",
-    password_confirmation:""
+    name:"", 
+    description:"", 
+    price:0,
+    quantity:0,
+    image:"",
+    seller_id: 0
   })
-
+  console.log(currentUser)
+  
   function handleSubmit(e){
       e.preventDefault()
       console.log(formData)
-     if (formData.password === formData.password_confirmation){
-      fetch('http://127.0.0.1:3000/users', {
+      fetch('http://127.0.0.1:3000/items', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -76,9 +71,6 @@ export default function SignUp() {
           console.log(formData)
           // something to append to the UI the obj created
         });
-     } else{
-      alert("Password has to be the same")
-     }
      setFormData({username:"", email:"", password:"",password_confirmation:""})
   }
 
@@ -91,14 +83,14 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={14}>
               <TextField
                 name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="item_name"
-                label="Item Name"
+                id="name"
+                label="name"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 autoFocus
@@ -109,11 +101,12 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="desc"
+                id="description"
                 label="Description"
-                name="desc"
+                name="description"
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
+                autoComplete="description"
               />
             </Grid>
             <Grid item xs={12}>
@@ -122,7 +115,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="price"
-                label="Price"
+                label="price"
                 type="number" 
                 step="0.01"
                 id="price"
@@ -136,7 +129,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="quantity"
-                label="Confirm Password"
+                label="Quantity"
                 type="number"
                 id="quantity"
                 value={formData.quantity}
@@ -148,11 +141,11 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                name="category"
-                label="Category"
-                id="category"
-                value={formData.quantity}
-                onChange={(e) => setFormData({...formData, quantity: e.target.value})}
+                id="image"
+                label="Image"
+                name="image"
+                value={formData.image}
+                onChange={(e) => setFormData({...formData, image: e.target.value})}
               />
             </Grid>
           </Grid>
@@ -162,9 +155,9 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick= {handleSubmit}
+            onClick={handleSubmit}
           >
-            Sell an item
+            List the item
           </Button>
         </form>
       </div>

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Landing() {
+function Landing({currentUser}) {
   const classes = useStyles();
 
   return (

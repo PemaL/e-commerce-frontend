@@ -1,10 +1,12 @@
 import './App.css'
-import Landing from './pages/Landing'
-import { Routes, Route, Navigate } from "react-router-dom";
+import Landing from './pages/Landing';
+import { Routes, Route} from "react-router-dom";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import MainPage from './pages/mainpage';
+import ItemForm from './pages/ItemForm';
+import NavBar from './pages/NavBar';
 
 
 
@@ -33,9 +35,10 @@ function App() {
   } else {
     return (
       <>
-        <Landing />
+        <NavBar/>
         <Routes>
           <Route path="/mainpage" element={<MainPage currentUser={currentUser} />} />
+          <Route path="/ItemForm" element={<ItemForm currentUser={currentUser}/>} />
         </Routes>
       </>)
   }
