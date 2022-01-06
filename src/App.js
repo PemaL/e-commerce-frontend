@@ -1,19 +1,18 @@
-import './App.css'
-import Landing from './pages/Landing';
-import { Routes, Route} from "react-router-dom";
+import "./App.css";
+import Landing from "./pages/Landing";
+import { Routes, Route, Navigate } from "react-router-dom";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
-import {  useState, useEffect } from 'react';
-import MainPage from './pages/mainpage';
-import ItemForm from './pages/ItemForm';
-import NavBar from './pages/NavBar';
-
-
+import { useEffect, useState } from "react";
+import MainPage from "./pages/mainpage";
+import Cart from "./pages/Cart";
+import ItemForm from "./pages/ItemForm";
+import NavBar from "./pages/NavBar";
 
 function App() {
-
   const [currentUser, setCurrentUser] = useState("");
 
+  console.log(currentUser);
 
   console.log(currentUser)
 
@@ -29,26 +28,36 @@ function App() {
   // .then(data => setCurrentUser(data)),[]
   // console.log(currentUser)
 
-
   if (!currentUser) {
     return (
       <>
         <Landing />
         <Routes>
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/signin' element={<SignIn setCurrentUser={setCurrentUser} />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/signin"
+            element={<SignIn setCurrentUser={setCurrentUser} />}
+          />
         </Routes>
       </>
     );
   } else {
     return (
       <>
-        <NavBar/>
+        <NavBar />
         <Routes>
-          <Route path="/mainpage" element={<MainPage currentUser={currentUser} />} />
-          <Route path="/ItemForm" element={<ItemForm currentUser={currentUser}/>} />
+          <Route
+            path="/mainpage"
+            element={<MainPage currentUser={currentUser} />}
+          />
+          <Route
+            path="/ItemForm"
+            element={<ItemForm currentUser={currentUser} />}
+          />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
-      </>)
+      </>
+    );
   }
 }
 
