@@ -14,11 +14,14 @@ function App() {
 
   console.log(currentUser);
 
+  console.log(currentUser)
+
   useEffect(() => {
-    fetch("http://127.0.0.1:3000/me")
-      .then((res) => res.json())
-      .then((x) => setCurrentUser(x));
-  }, []);
+  fetch('http://127.0.0.1:3000/me')
+    .then(res => res.json())
+    .then(x => setCurrentUser(x))
+  },[]) 
+
 
   // fetch('http://127.0.0.1:3000/users')
   // .then(res => res.json())
