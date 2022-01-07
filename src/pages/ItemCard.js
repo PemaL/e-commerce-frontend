@@ -28,7 +28,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 345,
-      height: '35vw',
+      height: '25vw',
+      boxShadow:  "0 7px 30px -10px rgba(150,170,180,0.5)",
+      color:"#1e88e5"
     },
     media: {
       height: 0,
@@ -60,22 +62,22 @@ const useStyles = makeStyles((theme) => ({
     
     return (
       <Card className={classes.root}>
-        <CardHeader
+        <CardHeader 
           action={
             <IconButton aria-label="settings">
             </IconButton>
           }
           
           title={item.name}
-          subheader= {`seller: ${name}` }
+          subheader= {`Seller: ${name}` }
         />
         <CardMedia
           className={classes.media}
           image={item.image}
-          title="Seller:"
+          title="seller:"
         />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="#1e88e5" component="p">
             Category: {item.category}
           </Typography>
         </CardContent>

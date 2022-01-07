@@ -69,8 +69,8 @@ export default function SignIn({currentUser, setCurrentUser}) {
       </Toolbar>
     </AppBar>
   </Box>
-    <ThemeProvider theme={theme} >
-      <Container component="main" maxWidth="xs" >
+    <ThemeProvider theme={theme}  >
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{

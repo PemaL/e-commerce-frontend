@@ -1,13 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import ItemPage from "./ItemPage";
-import { useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 import { Drawer } from "@material-ui/core";
 
 function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
-  const navigate = useNavigate();
-
   const [users, setUsers] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -47,11 +44,9 @@ function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
     }
   }
 
-  function handleClick() {
-    navigate("/ItemForm");
-  }
+ 
   return (
-    <div>
+    <>
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
         <Cart
           cartItems={cartItems}
@@ -59,10 +54,9 @@ function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
           removeItem={handleRemoveItem}
         />
       </Drawer>
-      <button onClick={handleClick}> Sell an item </button>
-      <h1>Hello {currentUser.username}</h1>
+      <h1 color="#1e88e5"> Hello {currentUser.username}</h1>
       <ItemPage users={users} items={items} addItem={handleAddItem} />
-    </div>
+    </>
   );
 }
 

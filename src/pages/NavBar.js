@@ -11,7 +11,6 @@ import MenuItem from "@mui/material/MenuItem";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -27,7 +26,7 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: "100%",
+  width: "130%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
     width: "auto",
@@ -99,6 +98,11 @@ const navigate = useNavigate();
       });
   }
 
+  function handleItemForm(){
+    handleMenuClose()
+    navigate("/ItemForm")
+  }
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -116,9 +120,7 @@ const navigate = useNavigate();
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Sales</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Purchases</MenuItem>
+      <MenuItem onClick={handleItemForm}>Sell An Item</MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
@@ -149,7 +151,7 @@ const navigate = useNavigate();
         <p>My Likes</p>
       </MenuItem>
       <MenuItem onClick={cartOpen}>
-        <IconButton size="large" aria-label="show 1 cart items" color="inherit">
+        dfs<IconButton size="large" aria-label="show 1 cart items" color="inherit">
           <Badge badgeContent={0} color="error">
             <ShoppingCartIcon />
           </Badge>
@@ -182,13 +184,12 @@ const navigate = useNavigate();
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
           </IconButton>
           <Toolbar variant="dense" onClick={() => navigate('/mainpage')}>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+        <IconButton edge="start" color="inherit" aria-label="menu">
           <ShoppingBasketIcon />
         </IconButton>
-        <Typography variant="h6" color="inherit" component="div">
+        <Typography variant="h6" color="#1e88e5" component="div">
          Flata Shop
         </Typography>
       </Toolbar>
