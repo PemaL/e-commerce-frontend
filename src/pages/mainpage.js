@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import ItemPage from "./ItemPage";
-import ItemForm from "./ItemForm";
 import { useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 import { Drawer } from "@material-ui/core";
@@ -17,11 +16,6 @@ function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
       .then((res) => res.json())
       .then((x) => setUsers(x));
   }, []);
-
-  function handleClick() {
-    navigate("/ItemForm");
-  }
-  console.log(currentUser);
 
   function handleAddItem(addedItem) {
     const ItemExist = cartItems.find((item) => item.id === addedItem.id);
@@ -53,6 +47,9 @@ function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
     }
   }
 
+  function handleClick() {
+    navigate("/ItemForm");
+  }
   return (
     <div>
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
@@ -62,8 +59,8 @@ function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
           removeItem={handleRemoveItem}
         />
       </Drawer>
-      <h1>Hello {currentUser.username}</h1>
       <button onClick={handleClick}> Sell an item </button>
+      <h1>Hello {currentUser.username}</h1>
       <ItemPage users={users} items={items} addItem={handleAddItem} />
     </div>
   );

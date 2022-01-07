@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import CssBaseline from '@mui/material/CssBaseline';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Stack from '@mui/material/Stack';
@@ -11,7 +10,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from "react-router-dom";
+import { makeStyles } from '@mui/styles';
 // import SignIn from "../components/signin";
+
+import Image from '../Images/123.jpeg';
 
 function Copyright() {
   return (
@@ -23,10 +25,17 @@ function Copyright() {
   );
 }
 
+const useStyles = makeStyles({
+  root: {
+    backgroundImage: `url(${Image})`,
+    width: '100%',
+    height: '100%',
+}});
 
 const theme = createTheme();
 
 export default function Album() {
+  const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -43,16 +52,17 @@ export default function Album() {
         <Box
           sx={{
             bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
+            pt: 40,
+            pb: 0,
           }}
+          className={classes.root}
         >
-          <Container maxWidth="sm">
+          <Container sx={{mb: 10}}maxWidth="sm" >
             <Typography
               component="h1"
               variant="h2"
               align="center"
-              color="text.primary"
+              color="secondary.main"
               gutterBottom
             >
               Ready to Shop

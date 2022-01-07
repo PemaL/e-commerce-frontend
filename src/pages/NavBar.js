@@ -16,7 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -88,7 +88,7 @@ export default function NavBar({
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
   function handleLogout() {
     fetch("http://127.0.0.1:3000/logout", { method: "DELETE" })
@@ -184,14 +184,14 @@ export default function NavBar({
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Flata Shop
-          </Typography>
+          <Toolbar variant="dense" onClick={() => navigate('/mainpage')}>
+        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <ShoppingBasketIcon />
+        </IconButton>
+        <Typography variant="h6" color="inherit" component="div">
+         Flata Shop
+        </Typography>
+      </Toolbar>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

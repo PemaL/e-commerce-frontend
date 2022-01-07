@@ -5,7 +5,6 @@ import SignIn from "./components/signin";
 import SignUp from "./components/signup";
 import { useEffect, useState } from "react";
 import MainPage from "./pages/mainpage";
-import Cart from "./pages/Cart";
 import ItemForm from "./pages/ItemForm";
 import NavBar from "./pages/NavBar";
 
@@ -26,16 +25,18 @@ function App() {
   console.log(currentUser);
 
   useEffect(() => {
+
     fetch("http://127.0.0.1:3000/items")
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, []);
 
-  // useEffect(() => {
-  //   fetch('http://127.0.0.1:3000/me')
-  //   .then(res => res.json())
-  //   .then(data => setCurrentUser(data));
-  //   },[])
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:3000/me')
+    .then(res => res.json())
+    .then(data=> data.username && setCurrentUser(data) );
+    },[])
 
   if (!currentUser) {
     return (
