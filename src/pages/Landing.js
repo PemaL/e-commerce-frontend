@@ -28,8 +28,8 @@ function Copyright() {
 const useStyles = makeStyles({
   root: {
     backgroundImage: `url(${Image})`,
-    width: '100%',
-    height: '100%',
+    maxWidth: '120%',
+    height: '55vw'
 }});
 
 const theme = createTheme();
@@ -62,13 +62,13 @@ export default function Album() {
               component="h1"
               variant="h2"
               align="center"
-              color="secondary.main"
+              color="primary.main"
               gutterBottom
             >
-              Ready to Shop
+              Welcome To Flata Shop
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              you came to the right place, boiii
+              Ready to shop?
             </Typography>
             <Stack
               sx={{ pt: 4 }}
