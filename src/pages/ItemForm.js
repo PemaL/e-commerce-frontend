@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: "wrap",
     flexDirection: 'row',
-    flexWrap: 'wrap',
     width: '50%',
     height: '40%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
@@ -56,8 +55,6 @@ export default function ItemForm({currentUser}) {
     image:"",
     seller_id: currentUser.id
   })
-
-  console.log(currentUser)
 
   function handleSubmit(e){
       e.preventDefault()
