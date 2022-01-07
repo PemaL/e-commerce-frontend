@@ -31,6 +31,11 @@ function App() {
       .then((data) => setItems(data));
   }, []);
 
+  function handleDeleteItem(id){
+    const updatedItemsArray = items.filter((item)=> item.id !== id.id)
+    setItems(updatedItemsArray)
+  }
+
 
   useEffect(() => {
     fetch('http://127.0.0.1:3000/me')
@@ -67,6 +72,7 @@ function App() {
             path="/MainPage"
             element={
               <MainPage
+                handleDeleteItem = {handleDeleteItem}
                 items={searchedItems}
                 currentUser={currentUser}
                 setCartOpen={setCartOpen}

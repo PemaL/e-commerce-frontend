@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 import { Drawer } from "@material-ui/core";
 
-function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
+function MainPage({ currentUser, items, setCartOpen, cartOpen,handleDeleteItem }) {
   const navigate = useNavigate();
 
   const [users, setUsers] = useState([]);
@@ -61,7 +61,7 @@ function MainPage({ currentUser, items, setCartOpen, cartOpen }) {
       </Drawer>
       <button onClick={handleClick}> Sell an item </button>
       <h1>Hello {currentUser.username}</h1>
-      <ItemPage users={users} items={items} addItem={handleAddItem} />
+      <ItemPage handleDeleteItem={handleDeleteItem} currentuser = {currentUser} users={users} items={items} addItem={handleAddItem} />
     </div>
   );
 }
